@@ -3,6 +3,9 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
+body{
+    background-color: #fbf9f9;
+}
 .h5{
  color: #494BD6;
 }
@@ -11,8 +14,10 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   margin: 20px 0;
+
 }
 .card {
+    width: 100%;
   background: #fff;
   padding: 15px;
   border-radius: 10px;
@@ -20,4 +25,63 @@
 }
 .h3{
     color: #494BD6;
+    font-size: 30px;
+}
+.ball{
+    color: gray;
+}
+.matematika{
+    color: #10B981;
+    font-size: 30px;
+}
+.test{
+    font-size: 30px;
+}
+.sana{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    
+}
+.cards{
+    display: flex;
+    justify-content: center;
+}
+.list {
+    width: 100%;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section {
+  display: grid;
+ 
+  gap: 20px;
+}
+.h85{
+    color: #10B981;
+
+}
+.h68{
+    color: #F59E0B;
+}
+.h45{
+    color: red;
+}
+.h72{
+    color: #F59E0B;
+}
+.section {
+  display: grid;
+ 
+  gap: 20px;
+ 
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
 }

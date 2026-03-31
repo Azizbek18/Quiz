@@ -72,6 +72,9 @@ body {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.h85{
+  color: #10B981;
+}
 
 .badge {
   padding: 3px 8px;
