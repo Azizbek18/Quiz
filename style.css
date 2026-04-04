@@ -6,19 +6,18 @@
 
 body {
     margin: 0;
-    background: #F8F9FA;
+   
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: radial-gradient(128.06% 160.08% at 0% 100%, #F1F4F6 0%, rgba(241, 244, 246, 0) 40%),
-        radial-gradient(128.06% 160.08% at 100% 0%, #E1E0FF 0%, rgba(225, 224, 255, 0) 40%);
+   background-color: #F8F9FA;
 
 
 }
 
 .box {
-    background-color: transparent;
+    background-color: white;
     width: 450px;
     height: 500px;
     color: rgb(0, 0, 0);
@@ -39,7 +38,7 @@ body {
 }
 
 .inp1 {
-    background-color: #F1F4F6;
+    background-color: #ecf2f6;
     padding: 10px 20px;
     outline: none;
     border: none;

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
@@ -16,19 +18,19 @@
         </div>
 
         <div class="inp1">      
-            <img src="./Icon (11).svg" alt="">
-            <input class="inp1"    type="" placeholder="ism">
+            <img src="./Icon (23).svg" alt="">
+            <input id="ism" class="inp1"    type="" placeholder="ism">
         </div>
         <div class="inp1">
-            <img src="./Icon (12).svg" alt="">
-            <input class="inp1" type="text" placeholder="email">
+            <img src="./Icon (24).svg" alt="">
+            <input id="email" class="inp1" type="text" placeholder="email">
         </div>
         <div class="inp1">
-            <img src="./Icon (13).svg" alt="">
-            <input class="inp1" type="" placeholder="parol">
+            <img src="./Icon (25).svg" alt="">
+            <input id="parol" class="inp1" type="password" placeholder="parol">
         </div>
         <div class="inp1">
-            <img src="/Icon (14).svg" alt="">
+            <img src="/Icon (26).svg" alt="">
             <input class="inp" type="" placeholder="parol tastiqlang">
         </div>
         <div class="checkbox">
@@ -36,8 +38,10 @@
             <span>Foydalanish shartlariga roziman</span>
         </div>
 
-        <button class="btn1">Hisob yaratish</button>
+        <button onclick="yaratish()" class="btn1">Hisob yaratish</button>
     </div>
+    <div class="xabar-con"></div>
+    <script src="./script.js"></script>
 </body>
 
 </html>
