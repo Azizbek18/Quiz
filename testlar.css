@@ -1,0 +1,132 @@
+/* Umumiy sozlamalar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F8F9FA;
+    height: 100vh;
+    width: 100vw;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+/* Konteyner va Layout */
+.max-w-1000px {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header qismi */
+.flex-justify-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem; /* p-4 */
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.timer-btn {
+    background-color: #E2E9EC;
+    border-radius: 1rem; /* rounded-2xl */
+    padding: 0.5rem; /* p-2 */
+    width: 60px;
+    border: none;
+}
+
+/* Progress bar (ko'k chiziq) */
+.progress-container {
+    display: flex;
+    justify-content: center;
+}
+
+.progress-line {
+    width: 100%;
+    background-color: #494BD6;
+    height: 4px; /* h-1 */
+}
+
+/* Savol qismi */
+.question-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mb-40px {
+    margin-bottom: 40px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+/* Variantlar (Test javoblari) */
+#tanlash {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 40px;
+    margin-top: 30px;
+    list-style: none;
+}
+
+#tanlash li {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+    width: 400px;
+    padding: 10px;
+    border-radius: 0.75rem; /* rounded-xl */
+    background-color: white; /* ko'rinishi uchun qo'shildi */
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+#tanlash li:hover {
+    transform: scale(1.02);
+}
+
+#tanlash button {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Pastki tugmalar */
+.footer-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    align-items: center;
+    margin-top: 40px;
+}
+
+#keyingi {
+    background-color: #494BD6;
+    color: white;
+    padding: 0.5rem 1rem; /* p-2 va biroz yoniga */
+    border-radius: 1rem; /* rounded-2xl */
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#keyingi:hover {
+    opacity: 0.9;
+}

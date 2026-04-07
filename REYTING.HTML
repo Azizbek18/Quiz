@@ -1,116 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Reyting - Leaderboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="reyting.css">
 </head>
+<body>
 
-<body class="">
-    <div class="p-[30px]">
-        <h1 class="text-[40px]">
-            Reyting
-        </h1>
-        <p>Barcha o'quvchilar natijalari</p>
-        <div class="flex gap-9 pt-[20px]">
-            <p class="active:text-[#494BD6] ">Haftalik </p>
-            <p class="active:text-[#494BD6] ">Oylik</p>
-            <p class="active:text-[#494BD6]  ">Umumiy</p>
-        </div>
-        <div class="flex gap-[20px] items-end">
-            <div class="flex justify-center flex-col items-center">
-                <img src="./Nilufar X..svg" alt="">
-                <h4>Nilufar X.</h4>
-                <p>875 ball</p>
-                <div class="bg-[#F1F4F6] w-[200px] h-[100px] rounded-xl">
-                    <h1 class="text-[40px] text-center ">2</h1>
+    <div class="ranking-wrapper">
+        <header class="ranking-header">
+            <h1>Reyting</h1>
+            <p>Barcha o'quvchilar natijalari</p>
+        </header>
+
+        <nav class="filter-nav">
+            <p class="filter-item active">Haftalik</p>
+            <p class="filter-item">Oylik</p>
+            <p class="filter-item">Umumiy</p>
+        </nav>
+
+        <section class="podium">
+            <div class="podium-item">
+                <img src="./Nilufar X..svg" alt="User" class="avatar">
+                <h4 id="ikki-title">Nilufar X.</h4>
+                <p id="ikki-ball" class="points">875 ball</p>
+                <div class="bar rank-2">
+                    <h1 id="ikki">2</h1>
                 </div>
             </div>
-            <div>
-                <div class="flex justify-center flex-col items-center ">
-                    <img src="./Sardor M..svg" alt="">
-                    <h4>Sardor M.</h4>
-                    <p>920 ball</p>
-                    <div class="bg-[#E1E0FF] w-[200px] h-[200px] rounded-xl">
-                        <h1 class="text-[40px] text-center ">1</h1>
-                    </div>
-                </div>
 
-            </div>
-            <div>
-                <div class="flex justify-center flex-col items-center ">
-                    <img src="./Background+Border+Shadow.svg" alt="">
-                    <h4>Kamol Y. (Siz)</h4>
-                    <p>842 ball</p>
-                    <div class="bg-[#F1F4F6] w-[200px] h-[150px] rounded-xl">
-                        <h1 class="text-[40px] text-center ">3</h1>
-                    </div>
+            <div class="podium-item">
+                <img src="./Sardor M..svg" alt="User" class="avatar">
+                <h4 id="bir-title">Sardor M.</h4>
+                <p id="bir-ball" class="points">920 ball</p>
+                <div class="bar rank-1">
+                    <h1 id="bir">1</h1>
                 </div>
-
             </div>
 
-        </div>
-        <div class="overflow-x-auto p-4">
-            <table  class="min-w-full border-collapse border border-gray-200 shadow-sm rounded-lg overflow-hidden">
-                <thead class="bg-gray-100 border-b border-gray-300">
+            <div class="podium-item">
+                <img src="./Background+Border+Shadow.svg" alt="User" class="avatar">
+                <h4 id="uch-title">Kamol Y. (Siz)</h4>
+                <p id="uch-ball" class="points">842 ball</p>
+                <div class="bar rank-3">
+                    <h1 id="uch">3</h1>
+                </div>
+            </div>
+        </section>
+
+        <div class="table-container">
+            <table class="rating-table">
+                <thead>
                     <tr>
-                        <th
-                            class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider border-r border-gray-300">
-                            No</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 border-r border-gray-300">Ism
-                        </th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 border-r border-gray-300">
-                            ball</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 border-r border-gray-300">
-                            Testlar</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 border-r border-gray-300">
-                            Streak</th>
-                        <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600 border-r border-gray-300">
-                            O'zgarish</th>
-
+                        <th>No</th>
+                        <th>Ism</th>
+                        <th>Ball</th>
+                        <th>Testlar</th>
+                        <th>Streak</th>
+                        <th>O'zgarish</th>
                     </tr>
                 </thead>
-
-                <tbody id="tbody" class="divide-y divide-gray-200 bg-white">
-                    
-
-                
-
-                </tbody>
-                <tfoot class="p-4">
-                    <tr class="p-4 text-center">
-                        <td>Siz 78 o'quvchidan 3-o'rindasiz</td>
+                <tbody id="tbody">
+                    </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">Siz 78 o'quvchidan 3-o'rindasiz</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
-        <div class="flex">
-            <div class="flex items-center gap-5">
-                <div>
-                    <img src="./Container.svg" alt="">
-                </div>
-                <div>
-                    <h1>Keyingi daraja</h1>
-                    <p class="w-[500px]">Siz Nilufar X. bilan farqingizni 33 ballga qisqartirdingiz. Yana 2
-                        ta mukammal test va siz 2-o'rindasiz!</p>
+
+        <section class="achievements">
+            <div class="achievement-card">
+                <img src="./Container.svg" alt="Icon">
+                <div class="ach-text">
+                    <h3>Keyingi daraja</h3>
+                    <p>Siz Nilufar X. bilan farqingizni 33 ballga qisqartirdingiz. Yana 2 ta mukammal test va siz 2-o'rindasiz!</p>
                 </div>
             </div>
-            <div class="flex items-center gap-5">
-                <div>
-                    <img src="./Background+Shadow (1).svg" alt="">
-                </div>
-                <div>
-                    <h1>Streak Master</h1>
-                    <p class="w-[500px]">Ketma-ket 7 kunlik faollik! Keyingi 3 kun ichida reytingda +10%
-bonus ballar olasiz.</p>
+            <div class="achievement-card">
+                <img src="./Background+Shadow (1).svg" alt="Icon">
+                <div class="ach-text">
+                    <h3>Streak Master</h3>
+                    <p>Ketma-ket 7 kunlik faollik! Keyingi 3 kun ichida reytingda +10% bonus ballar olasiz.</p>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
+
     <script src="./reyting.js"></script>
 </body>
-
 </html>
