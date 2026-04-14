@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: #f5f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background-color: white;
+    width: 450px;
+    height: 500px;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px 0px #0000000D;
+
+
+
+}
+
+.dumaloq {
+    border: 7px solid #494BD6;
+    width: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.text-title {
+    text-align: center;
+}
+
+.box1 {
+    background-color: #F1F4F6;
+    height: 80px;
+    border-radius: 6px;
+    padding: 3px 3px;
+
+}
+
+.on {
+    color: #494BD6;
+}
+
+.off {
+
+    color: gray;
+}
+
+.onn {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.tit {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tit .on {
+    margin: 0;
+}
+
+.tit .off {
+    margin: 0;
+    display: flex;
+}
+
+.onm {
+    color: red;
+    margin: 0;
+}
+
+.buta {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    gap: 40px;
+}
+
+.bnm {
+    padding: 16px;
+    width: 50%;
+    font-size: 16px;
+    color: #494BD6;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.bjm {
+    padding: 16px;
+    width: 50%;
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    background-color: #494BD6;
+}
+
+.kk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.kk p{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.onn {
+    padding: 10px 40px;
+}
