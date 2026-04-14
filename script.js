@@ -25,9 +25,12 @@ async function yaratish() {
     let email = document.getElementById('email')
 
     if(ism.value == "" && parol.value == ""){   
-        alert("Maydonlarni to'ldiring")
+         xabarnoma('Maydonii toldiring','info')
+           
         return
     }
+    
+
 
     const {data:foydalanuvchi , error:xatolik} = await _supabase
     .from('login')
@@ -35,11 +38,11 @@ async function yaratish() {
     .eq('ism',ism.value)
     .eq('parol', parol.value)
     if(xatolik){
-        alert("Xatolik yuz berdi" + error.message)
+      xabarnoma('Xatolik yuz berdi' + error.message)
         return
     }
     if(foydalanuvchi.length > 0){
-        alert("Siz ro'yhatdan o'tgan  ekansiz. Kirish qismiga o'ting")
+        xabarnoma('Siz Royhata bor ekansz Tizimga kiring')
         window.location.href = "login.html"
     }
     else{
@@ -53,15 +56,21 @@ async function yaratish() {
             }
         ])
         if(error){
-            alert("Xatolik yuz berdi" + error.message)
+               xabarnoma('Xatolik yuz berdi' + error.message)
         }
         else{
+            localStorage.setItem("Ism",ism.value)
             ism.value = ""
             parol.value = ""
             email.value = ""
-            alert("Siz ro'yhatdan o'tdingiz tabriklaymiz!!!")
-            window.location.href = 'indexteslar.html'
+            xabarnoma('Siz royhatan otingiz','success')
+            setTimeout(() => {
+                window.location.href = 'indexteslar.html' 
+            }, 2500);
         }
     }
-
+    
 }
+
+console.log(localStorage.getItem('ism'));
+
