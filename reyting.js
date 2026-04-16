@@ -2,6 +2,7 @@ let supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt"
 let supaBaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co"
 const _supabase = supabase.createClient(supaBaseUrl, supabaseKey)
 
+let orin = document.getElementById('nechinchi')
 let birTitle =document.getElementById('bir-title')
 let ikkiTitle =document.getElementById('ikki-title')
 let uchTitle =document.getElementById('uch-title')
@@ -53,6 +54,8 @@ async function Olish() {
             index++
         });
         jadval.innerHTML = html
+
+        orin.innerText = `Siz ${tartibData.length} o'quvchidan 3-o'rindasiz`
         
     }
 }
