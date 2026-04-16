@@ -7,6 +7,12 @@ let javobBerildi = false
 let tugriJavoblar = 0
 let motiv = document.querySelector('.skip-text')
 
+let notugriJavoblar = 0;
+let umumiySarflanganVaqt = 0;
+let savolBoshlanganVaqt;
+
+
+
 let supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt";
 let supabaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co";
 const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
@@ -54,6 +60,7 @@ function ekrangaChiqar() {
         alert("Test tugadi!");
         return;
     }
+    savolBoshlanganVaqt = new Date();
     javobBerildi = false
     motiv.innerText = "O'ylab javob bering"
     progressYangila()
@@ -87,13 +94,15 @@ function ekrangaChiqar() {
 }
 
 let keyingi = document.getElementById('keyingi');
+
 keyingi.addEventListener('click', () => {
-    if (!javobBerildi) return
+    if (!javobBerildi) return; 
+
     if (hozirgiIndex < savollar.length - 1) {
         hozirgiIndex++;
         ekrangaChiqar();
     } else {
-        alert("Bu oxirgi savol!");
+        natijaniSaqlash(); 
     }
 });
 
@@ -101,24 +110,31 @@ keyingi.addEventListener('click', () => {
 
 
 
-let tanlash = document.getElementById('tanlash')
+let tanlash = document.getElementById('tanlash');
 
 tanlash.addEventListener('click', (e) => {
-    let bosilganLi = e.target.closest('li')
-    if (!bosilganLi || javobBerildi) return
-    let ichidagiSpan = bosilganLi.querySelectorAll('span')[1].innerText
-    javobBerildi = true
-    console.log(ichidagiSpan)
+    let bosilganLi = e.target.closest('li');
+    if (!bosilganLi || javobBerildi) return; 
+
+    javobBerildi = true;
+    clearInterval(taymer); 
+    let savolTugaganVaqt = new Date();
+    let sarflanganSoniya = Math.floor((savolTugaganVaqt - savolBoshlanganVaqt) / 1000);
+    umumiySarflanganVaqt += sarflanganSoniya;
+
+    let ichidagiSpan = bosilganLi.querySelectorAll('span')[1].innerText;
+    
     if (ichidagiSpan == savollar[hozirgiIndex].javob) {
-        bosilganLi.classList.add('yashil')
-        console.log(bosilganLi.classList);
-        tugriJavoblar++
-        motiv.innerText = "Tabriklaymiz"
-    }
-    else {
-        bosilganLi.classList.add('red')
+        bosilganLi.classList.add('yashil');
+        tugriJavoblar++;
+        motiv.innerText = "Tabriklaymiz";
+    } else {
+        bosilganLi.classList.add('red');
+        notugriJavoblar++; 
+        motiv.innerText = "Afsus, kayfiyatni tushirmang";
+        
+        // To'g'ri javobni ko'rsatish
         const barchaVariantlar = tanlash.querySelectorAll('li');
-        motiv.innerText = "Afsus, kayfiyatni tushirmang"
         barchaVariantlar.forEach(li => {
             let variantMatni = li.querySelectorAll('span')[1].innerText;
             if (variantMatni == savollar[hozirgiIndex].javob) {
@@ -126,7 +142,7 @@ tanlash.addEventListener('click', (e) => {
             }
         });
     }
-})
+});
 function progressYangila() {
     const bar = document.getElementById('myBar');
     let foiz = ((hozirgiIndex + 1) / savollar.length) * 100;
@@ -134,19 +150,23 @@ function progressYangila() {
 }
 
 
-async function testNatija() {
+async function natijaniSaqlash() {
+    document.getElementById('keyingi').disabled = true; 
+
     const { data, error } = await _supabase
-        .from("testnatijasi")
+        .from("testnatija") 
         .insert([
             {
-                
+                togrijavob: tugriJavoblar, 
+                notogrijavob: notugriJavoblar, 
+                vaqt: umumiySarflanganVaqt 
             }
-        ])
+        ]);
 
     if (error) {
-        alert("Xatolik yuz berdi: " + error.message);
+        alert("Natijani saqlashda xatolik: " + error.message);
+        document.getElementById('keyingi').disabled = false;
     } else {
-        savollar = data;
-        ekrangaChiqar();
+        alert(`Test tugadi! \nTo'g'ri: ${tugriJavoblar} \nXato: ${notugriJavoblar} \nKetgan vaqt: ${umumiySarflanganVaqt} soniya. \nMa'lumotlar bazaga saqlandi!`);
     }
 }
