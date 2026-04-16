@@ -125,3 +125,61 @@ body {
         opacity: 0;
     }
 }
+    
+
+@media screen and (max-width: 768px) {
+
+    .box {
+        width: 90% !important;  
+        max-width: 380px;       
+        margin: 20px auto;     
+        padding: 25px 20px;     
+    }
+
+
+    .inp1 {
+        width: 100% !important;
+        margin-bottom: 12px;
+    }
+
+    .inp1 input {
+        font-size: 14px;      
+        padding: 10px;
+    }
+
+   
+    .yozuv h1 {
+        font-size: 20px;
+        text-align: center;      
+    }
+
+    .yozuv p {
+        font-size: 13px;
+        text-align: center;
+    }
+
+
+    .btn1 {
+        width: 100% !important;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+
+    .checkbox {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+    .box {
+        width: 95% !important;
+        padding: 15px;
+    }
+    
+    .yozuv h1 {
+        font-size: 18px;
+    }
+}

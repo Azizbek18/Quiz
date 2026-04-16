@@ -1,43 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Matematika Testi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        /* Agar alohida .css fayl ochishni xohlamasangiz, 
+           oldingi javobimda bergan CSS kodlarni shu yerga qo'yishingiz mumkin */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #F8F9FA; height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; }
+        .back-btn { cursor: pointer; color: #6c757d; }
+        .timer { background-color: #E2E9EC; border-radius: 15px; padding: 8px 15px; border: none; font-weight: bold; }
+        .progress-bar { width: 100%; background-color: #494BD6; height: 4px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
+        .question-header { text-align: center; margin-bottom: 40px; }
+        .question-header p { color: #6c757d; margin-bottom: 10px; }
+        .question-text { font-size: 28px; color: #333; }
+        #tanlash { list-style: none; display: flex; flex-direction: column; gap: 20px; width: 100%; align-items: center; }
+        #tanlash li { 
+            background: white; 
+            width: 400px; 
+            padding: 15px 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #tanlash li:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border: 1px solid #494BD6; }
+        #tanlash li span { font-weight: bold; color: #494BD6; }
+        #tanlash button { border: none; background: none; font-size: 18px; cursor: pointer; width: 100%; text-align: left; }
+        .footer { display: flex; justify-content: space-around; width: 100%; margin-top: 50px; align-items: center; }
+        .skip-text { color: #6c757d; cursor: pointer; }
+        #keyingi { background-color: #494BD6; color: white; padding: 12px 30px; border-radius: 15px; border: none; cursor: pointer; font-size: 16px; }
+        #keyingi:hover { background-color: #3a3bb1; }
+    </style>
 </head>
 
-<body class="bg-[#F8F9FA] h-screen w-screen">
-    <div class="flex  flex-col gap-[20px]  ">
-        <div class="flex justify-evenly items-center p-4">
-            <p>orqaga</p>
-            <h class="text-2xl">Matematika testi</h>
-            <button class="bg-[#E2E9EC] rounded-2xl p-2 w-[60px]">04:32</button>
+<body>
+    <div class="container">
+        <header class="header">
+            <p class="back-btn">← orqaga</p>
+            <h2 class="text-2xl">Matematika testi</h2>
+            <button class="timer">04:32</button>
+        </header>
 
-        </div>
-        <div class="flex  m-[50px] justify-center">
-            <span class="w-[400px] bg-[#494BD6] h-1"></span>
-            <hr class="bg-slate-200 h-1 w-[500px]">
-        </div>
+        <div class="progress-bar"></div>
 
-        <div class="flex flex-col items-center">
-            <div class="mb-[40px]">
-
-                <p class="text-center">8-savol</p>
-                <h1 class="text-3xl">2³ + 3² ning qiymati nechaga teng?</h1>
+        <main class="main-content">
+            <div class="question-header">
+                <p>8-savol</p>
+                <h1 id="savolMatni" class="question-text">2³ + 3² ning qiymati nechaga teng?</h1>
             </div>
-            <div class="flex flex-col justify-evenly items-center gap-[40px] mt-[30px]">
-                <button class="shadow-xl w-[400px] p-[10px] rounded-xl">A 17</button>
-                <button class="shadow-xl w-[400px] p-[10px] rounded-xl"> B 13</button>
-                <button class="shadow-xl w-[400px] p-[10px] rounded-xl"> C  35</button>
-                <button class="shadow-xl w-[400px] p-[10px] rounded-xl">D 26</button>
-            </div>
-               <div class="flex justify-evenly w-screen items-center mt-[40px] "> <p>O'tkazib yuborish</p>
-                <button class="bg-[#494BD6] text-white p-2 rounded-2xl">Keyingi👉</button></div>
-            
-        </div>
+
+            <ul id="tanlash">
+                <li id="option-a">
+                    <span>A)</span>
+                    <button>17</button>
+                </li>
+                <li id="option-b">
+                    <span>B)</span>
+                    <button>67</button>
+                </li>
+                <li id="option-c">
+                    <span>C)</span>
+                    <button>52</button>
+                </li>
+                <li id="option-d">
+                    <span>D)</span>
+                    <button>69</button>
+                </li>
+            </ul>
+
+            <footer class="footer">
+                <p class="skip-text">O'tkazib yuborish</p>
+                <button id="keyingi">Keyingi 👉</button>
+            </footer>
+        </main>
     </div>
-</body>
 
+    <script src="./testlar.js"></script>
+</body>
 </html>
