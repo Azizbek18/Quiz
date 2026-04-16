@@ -7,8 +7,9 @@
 }
 
 body {
-    background-color: #ffffff;
-    color: #1a1a1a;
+    font-family: Arial, sans-serif;
+  background: #f5f6fa;
+  margin: 0;
 }
 
 .ranking-wrapper {
@@ -33,7 +34,40 @@ body {
     padding-top: 20px;
     margin-bottom: 40px;
 }
+.header h2 {
+  margin: 0;
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+background-color: white;
+padding: 20px 10px;
+   
+}
+.container nav{
+  border: none;
+  outline: none;
+}
 
+.hammasi-bitta{
+  text-decoration: none;
+}
+
+.hammasi-bitta:hover{
+  animation:  kottalsh  ease both 0.1s;
+  
+}
+
+@keyframes  kottalsh{
+  from{
+    font-size: 15px
+  }
+  to{
+    font-size: 20px;
+  }
+}
 .filter-item {
     cursor: pointer;
     font-weight: 500;

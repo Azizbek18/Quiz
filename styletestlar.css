@@ -6,7 +6,7 @@ body {
   font-family: Arial, sans-serif;
   background: #f5f6fa;
   margin: 0;
-  padding: 20px;
+
 }
 
 .container {
@@ -14,12 +14,88 @@ body {
   margin: auto;
 }
 
-.header {
-  margin-bottom: 20px;
-}
 
 .header h2 {
   margin: 0;
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+   
+}
+.container nav{
+  border: none;
+  outline: none;
+}
+
+.hammasi-bitta{
+  text-decoration: none;
+}
+
+.hammasi-bitta:hover{
+  animation:  kottalsh  ease both 0.1s;
+  
+}
+
+@keyframes  kottalsh{
+  from{
+    font-size: 15px
+  }
+  to{
+    font-size: 20px;
+  }
+}
+
+.xabar-con{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+}
+
+.xabar{
+    width: 400px;
+    padding: 15px 20px;
+    color: white;
+    border-radius: 10px;
+    margin: 10px 0px;
+
+    animation: kirish 1s ease, chiqish 1s ease 2s forwards;
+}
+
+
+
+.error{
+    background-color: red;
+}
+.success{
+    background-color: rgb(0, 209, 0);
+}
+.info{
+    background-color: skyblue;
+}
+@keyframes kirish{
+    from{
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes chiqish{
+    from{
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    to{
+        transform: translateX(120%);
+        opacity: 0;
+    }
 }
 
 .xabar-con{
@@ -125,6 +201,13 @@ body {
   color: #10B981;
 }
 
+.header{
+  background-color: white;
+ padding: 20px;
+  width: 100%;
+  margin: 0 ;
+
+}
 .badge {
   padding: 3px 8px;
   border-radius: 6px;
@@ -142,3 +225,86 @@ body {
   border-radius: 8px;
   font-size: 13px;
 }
+@media (max-width:768px){
+  .list{
+    flex-direction: column;
+  }
+ .container{
+  padding: 10px
+  
+  ;
+  flex-wrap: wrap;
+ }
+
+
+@media (max-width: 768px) {
+   
+    .container {
+        padding: 10px;
+    }
+
+ 
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        margin-right: 0;
+        font-size: 14px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+
+
+    .section {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+
+   
+    .list {
+        flex-direction: row; 
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .list div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+      
+    
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr; 
+    }
+
+    .result-item {
+        font-size: 14px;
+    }
+}
+}   
