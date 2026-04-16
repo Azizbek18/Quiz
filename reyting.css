@@ -41,7 +41,8 @@ body {
     transition: color 0.3s;
 }
 
-.filter-item.active, .filter-item:active {
+.filter-item.active,
+.filter-item:active {
     color: #494BD6;
     border-bottom: 2px solid #494BD6;
 }
@@ -87,9 +88,21 @@ body {
     color: #333;
 }
 
-.rank-1 { height: 200px; background-color: #E1E0FF; } /* Eng baland */
-.rank-2 { height: 150px; background-color: #F1F4F6; }
-.rank-3 { height: 100px; background-color: #F1F4F6; }
+.rank-1 {
+    height: 200px;
+    background-color: #E1E0FF;
+}
+
+/* Eng baland */
+.rank-2 {
+    height: 150px;
+    background-color: #F1F4F6;
+}
+
+.rank-3 {
+    height: 100px;
+    background-color: #F1F4F6;
+}
 
 /* Jadval */
 .table-container {
@@ -157,4 +170,30 @@ body {
     font-size: 14px;
     color: #666;
     line-height: 1.4;
+}
+
+@media (max-width:768px) {
+    .rank-1 {
+        height: 140px;
+        width: 110px;
+    }
+
+    .rank-2 {
+        height: 100px;
+        width: 110px;
+    }
+
+    .rank-3 {
+        height: 60px;
+        width: 110px;
+    }
+
+    .avatar {
+        height: 70px;
+    }
+
+    .rating-table {
+        overflow-x: scroll;
+        width: 100%;
+    }
 }

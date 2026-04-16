@@ -75,7 +75,7 @@ body {
     gap: 20px;
 }
 
-.header {
+.tepa {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -97,17 +97,17 @@ body {
 
 .progress-container {
     width: 100%;
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
     height: 4px;
     border-radius: 2px;
     overflow: hidden;
 }
 
 .progress-bar {
-    width: 0%; 
+    width: 0%;
     background-color: #494BD6;
     height: 100%;
-    transition: width 0.3s ease; 
+    transition: width 0.3s ease;
 }
 
 .main-content {
@@ -207,3 +207,22 @@ body {
     background-color: #3a3bb1;
 }
 
+
+
+@media (max-width:768px) {
+    .tepa h2 {
+        font-size: 15px;
+    }
+
+    .tepa p {
+        font-size: 15px;
+    }
+
+    .tepa {
+        padding: 20px;
+    }
+
+    .progress-bar {
+        padding: 20px;
+    }
+}
