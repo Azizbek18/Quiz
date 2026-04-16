@@ -59,4 +59,20 @@ async function Olish() {
 Olish()
 
 // sort
+// Barcha filter elementlarini tanlab olamiz
+const filterItems = document.querySelectorAll('.filter-item');
+
+filterItems.forEach(item => {
+  item.addEventListener('click', function() {
+    // 1. Avvalgi aktiv elementdan 'active' klassini olib tashlaymiz
+    document.querySelector('.filter-item.active').classList.remove('active');
+    
+    // 2. Bosilgan elementga 'active' klassini qo'shamiz
+    this.classList.add('active');
+
+    // 3. Qaysi biri bosilganiga qarab biror amal bajarish (ixtiyoriy)
+    const tanlandi = this.textContent;
+    console.log(tanlandi + " tanlandi");
+  });
+});
 
