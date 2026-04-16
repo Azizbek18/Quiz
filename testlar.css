@@ -85,6 +85,8 @@ body {
 .back-btn {
     cursor: pointer;
     color: #6c757d;
+    list-style: none;
+    text-decoration: none;
 }
 
 .timer {
@@ -224,5 +226,17 @@ body {
 
     .progress-bar {
         padding: 20px;
+    }
+    footer{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+       
+    }
+    .footer button{
+        width: 100%;
+        justify-content: center;
+        
     }
 }
