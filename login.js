@@ -1,51 +1,69 @@
-let supabaseKey = 'sb_publishable_sIjNcBDMfR8Wk97_PecyOQ_RVgA2-I2'
-let supaBaseUrl = 'https://fyzhblwiumysyehembfh.supabase.co'
-
+let supabaseKey = 'sb_publishable_MFumWWURDMHmoCrOZcUrHg_yL8QFJu6'
+let supaBaseUrl = 'https://jtnugbdhpmtgplcymboe.supabase.co'
 
 const _supabase = supabase.createClient(supaBaseUrl, supabaseKey)
-
 const xabarCon = document.querySelector(".xabar-con")
-function xabarnoma(xabar, turi) {
-    let xabarMatn = document.createElement('div');
-    xabarMatn.classList.add("xabar", turi)
-    console.log(xabarMatn);
 
-    xabarMatn.innerText = xabar;
+function xabarnoma(xabar, turi = 'info') {
+    // Toast elementini yaratish
+    let toast = document.createElement('div');
+    toast.classList.add("xabar", turi);
+
+    let iconClass = 'fa-info-circle';
+    if(turi === 'success') iconClass = 'fa-check-circle';
+    if(turi === 'error') iconClass = 'fa-exclamation-triangle';
+
+    toast.innerHTML = `
+        <i class="fas ${iconClass}" style="font-size: 20px;"></i>
+        <div style="flex: 1; font-size: 14px; font-weight: 500;">${xabar}</div>
+        <div class="progress-bar">
+            <div class="progress-line"></div>
+        </div>
+    `;
+
+    const xabarCon = document.querySelector(".xabar-con");
+    xabarCon.appendChild(toast);
 
     setTimeout(() => {
-        xabarMatn.remove();
+        toast.style.animation = "toastChiqish 0.5s ease-in forwards";
+        setTimeout(() => {
+            toast.remove();
+        }, 500);
     }, 4000);
-
-    xabarCon.appendChild(xabarMatn)
 }
 
-
-let email = document.getElementById('email')
-let parol = document.getElementById('Parol')
 async function Tekshirish() {
-  if (email.value == "" && parol.value == "") {
-    xabarnoma("Maydonlarni to'ldiring","info")
-    return
-  }
+    const email = document.getElementById('email');
+    const parol = document.getElementById('parol');
 
-  const { data: foydalanuvchi, error: xatolik } = await _supabase
-    .from('login')
-    .select('*')
-    .eq('email', email.value)
-    .eq('parol', parol.value)
-  if (xatolik) {
-    alert("Xatolik yuz berdi" + error)
-    return
-  }
-  if (foydalanuvchi.length > 0) {
-    alert("Siz oldin ro'yhatdan o'tgansiz!!!")
+    // 1. Bo'sh maydonlarni tekshirish
+    if (!email.value || !parol.value) {
+        xabarnoma('Email va parolni kiriting', 'info');
+        return;
+    }
 
-    window.location.href = "login.html"
-  }
-  else {
-    alert("Xatolik siz royhatdan otmagansiz")
-  }
+    // 2. Bazadan foydalanuvchini email va parol orqali qidirish
+    const { data: foydalanuvchi, error: xato } = await _supabase
+        .from('login')
+        .select('*')
+        .eq('email', email.value)
+        .eq('parol', parol.value)
+        .single(); // Faqat bitta foydalanuvchi qaytarishini kutamiz
+
+    if (xato) {
+        // Agar xato bo'lsa yoki bunday foydalanuvchi topilmasa
+        xabarnoma('Email yoki parol noto\'g\'ri!', 'error');
+        console.log(xato.message);
+        return;
+    }
+
+    if (foydalanuvchi) {
+        // 3. Muvaffaqiyatli kirish
+        localStorage.setItem("Ism", foydalanuvchi.ism); // Bazadagi ismni saqlab qo'yamiz
+        xabarnoma(`Xush kelibsiz, ${foydalanuvchi.ism}!`, 'success');
+
+        setTimeout(() => {
+            window.location.href = 'indexteslar.html';
+        }, 1500);
+    }
 }
-
-
-

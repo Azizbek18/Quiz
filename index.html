@@ -1,46 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>QuizMaster - Register</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 </head>
-
 <body>
+    <div class="circles">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+    </div>
+
     <div class="box">
         <div class="yozuv">
-            <h1>Royhatan Otish</h1>
-            <p>Bepul hisob yaratish</p>
+            <div class="icon-header"><i class="fas fa-brain"></i></div>
+            <h1>Ro'yxatdan O'tish</h1>
+            <p>Bilimlar olamiga xush kelibsiz!</p>
         </div>
 
-        <div class="inp1">      
-            <img src="./Icon (23).svg" alt="">
-            <input id="ism" class="inp1"    type="" placeholder="ism">
+        <div class="input-container">
+            <div class="inp1">      
+                <i class="fas fa-user"></i>
+                <input id="ism" type="text" placeholder="Ismingiz">
+            </div>
+            <div class="inp1">
+                <i class="fas fa-envelope"></i>
+                <input id="email" type="email" placeholder="Email manzilingiz">
+            </div>
+            <div class="inp1">
+                <i class="fas fa-lock"></i>
+                <input id="parol" type="password" placeholder="Parol yarating">
+            </div>
+            <div class="inp1">
+                <i class="fas fa-shield-alt"></i>
+                <input class="inp" type="password" placeholder="Parolni tasdiqlang">
+            </div>
         </div>
-        <div class="inp1">
-            <img src="./Icon (24).svg" alt="">
-            <input id="email" class="inp1" type="text" placeholder="email">
-        </div>
-        <div class="inp1">
-            <img src="./Icon (25).svg" alt="">
-            <input id="parol" class="inp1" type="password" placeholder="parol">
-        </div>
-        <div class="inp1">
-            <img src="/Icon (26).svg" alt="">
-            <input class="inp" type="" placeholder="parol tastiqlang">
-        </div>
+
         <div class="checkbox">
-            <input type="checkbox">
-            <span>Foydalanish shartlariga roziman</span>
+            <input type="checkbox" id="terms">
+            <label for="terms">Foydalanish shartlariga roziman</label>
         </div>
-        <button onclick="yaratish()" class="btn1">Hisob yratish</button>
+
+        <button onclick="yaratish()" class="btn1">
+            <span>Hisob yaratish</span>
+            <i class="fas fa-rocket"></i>
+        </button>
     </div>
+
     <div class="xabar-con"></div>
     <script src="./script.js"></script>
-</body> 
-
+</body>
 </html>

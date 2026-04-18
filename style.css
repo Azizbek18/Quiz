@@ -1,185 +1,292 @@
 * {
     box-sizing: border-box;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    margin: 0;
-   
+    background-color: #0f172a;
+    /* To'q rangli futuristik fon */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-   background-color: #F8F9FA;
-
-
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-.box {
-    background-color: white;
-    width: 450px;
-    height: 500px;
-    color: rgb(0, 0, 0);
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0px 1px 2px 0px #0000000D;
+/* Orqa fondagi 3D sferalar */
+.circles div {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    animation: move 8s infinite alternate ease-in-out;
 }
 
-.inp {
-    background-color: #F1F4F6;
-    outline: none;
-    border: none;
+.circle1 {
+    width: 300px;
+    height: 300px;
+    background: #494BD6;
+    top: -50px;
+    left: -50px;
+}
+
+.circle2 {
+    width: 250px;
+    height: 250px;
+    background: #a855f7;
+    bottom: -50px;
+    right: -50px;
+    opacity: 0.6;
+}
+
+.circle3 {
     width: 200px;
-    height: 40px;
-    color: white;
-    border-radius: 10px;
-    padding: 5px;
+    height: 200px;
+    background: #06b6d4;
+    top: 40%;
+    left: 30%;
+    opacity: 0.3;
 }
 
+@keyframes move {
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(50px) scale(1.1);
+    }
+}
+
+/* Glassmorphism Box */
+.box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    width: 450px;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icon-header {
+    font-size: 40px;
+    color: #494BD6;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px #494BD6);
+}
+
+.yozuv h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.yozuv p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Inputs */
 .inp1 {
-    background-color: #ecf2f6;
-    padding: 10px 20px;
-    outline: none;
-    border: none;
-    width: 100%;
-    height: 45px;
-    margin: 10px 0px;
-    color: rgb(0, 0, 0);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 12px 0;
+    padding: 0 15px;
+    height: 50px;
     display: flex;
     align-items: center;
-    border-radius: 10px;
-    font-size: 20px;
+    border-radius: 12px;
+    transition: 0.3s;
 }
 
-.input2 {
-    flex-direction: column;
+.inp1 i {
+    color: #64748b;
+    margin-right: 12px;
+    width: 20px;
+}
+
+.inp1 input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+}
+
+.inp1:focus-within {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #494BD6;
+    box-shadow: 0 0 15px rgba(73, 75, 214, 0.3);
+}
+
+/* Button */
+.btn1 {
+    background: linear-gradient(135deg, #494BD6, #9333ea);
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    transition: 0.3s;
 }
 
-.btn1 {
-    background-color: #494BD6;
-    width: 100%;
-
-    color: white;
-    border-radius: 10px;
-    padding: 15px 20px;
-    border: none;
-    margin: 10px 0px;
+.btn1:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(73, 75, 214, 0.4);
 }
 
 .checkbox {
     display: flex;
     align-items: center;
-    width: 100%;
+    justify-content: center;
     gap: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #cbd5e1;
 }
-.xabar-con{
+
+.xabar-con {
     position: fixed;
-    top: 30px;
-    right: 30px;
+    top: 25px;
+    right: 25px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.xabar{
-    width: 400px;
-    padding: 15px 20px;
+/* 3D Glass Toast */
+.xabar {
+    position: relative;
+    width: 340px;
+    padding: 18px 22px;
     color: white;
-    border-radius: 10px;
-    margin: 10px 0px;
-
-    animation: kirish 1s ease, chiqish 1s ease 2s forwards;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    animation: toastKirish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
+/* Toast turlari */
+.success {
+    border-left: 5px solid #22c55e;
+}
 
+.error {
+    border-left: 5px solid #ef4444;
+}
 
-.error{
-    background-color: red;
+.info {
+    border-left: 5px solid #3b82f6;
 }
-.success{
-    background-color: rgb(0, 209, 0);
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
 }
-.info{
-    background-color: skyblue;
+
+.progress-line {
+    height: 100%;
+    width: 100%;
+    background: currentColor;
+    /* Xabar turiga qarab rang oladi */
+    animation: progressAnim 4s linear forwards;
 }
-@keyframes kirish{
-    from{
-        transform: translateX(100%);
+
+.success .progress-line {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+.error .progress-line {
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+}
+
+.info .progress-line {
+    background: #3b82f6;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+/* Animatsiyalar */
+@keyframes toastKirish {
+    from {
+        transform: translateX(120%);
         opacity: 0;
     }
-    to{
-        transform: translateX(0%);
+
+    to {
+        transform: translateX(0);
         opacity: 1;
     }
 }
 
-@keyframes chiqish{
-    from{
-        transform: translateX(0%);
+@keyframes toastChiqish {
+    from {
+        transform: translateX(0);
         opacity: 1;
     }
-    to{
+
+    to {
         transform: translateX(120%);
         opacity: 0;
     }
 }
-    
 
-@media screen and (max-width: 768px) {
-
-    .box {
-        width: 90% !important;  
-        max-width: 380px;       
-        margin: 20px auto;     
-        padding: 25px 20px;     
+@keyframes progressAnim {
+    from {
+        width: 100%;
     }
 
-
-    .inp1 {
-        width: 100% !important;
-        margin-bottom: 12px;
-    }
-
-    .inp1 input {
-        font-size: 14px;      
-        padding: 10px;
-    }
-
-   
-    .yozuv h1 {
-        font-size: 20px;
-        text-align: center;      
-    }
-
-    .yozuv p {
-        font-size: 13px;
-        text-align: center;
-    }
-
-
-    .btn1 {
-        width: 100% !important;
-        padding: 12px;
-        font-size: 16px;
-    }
-
-
-    .checkbox {
-        font-size: 12px;
-        line-height: 1.4;
+    to {
+        width: 0%;
     }
 }
 
-
-@media screen and (max-width: 360px) {
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
     .box {
-        width: 95% !important;
-        padding: 15px;
+        width: 92%;
+        padding: 20px;
     }
-    
-    .yozuv h1 {
-        font-size: 18px;
+
+    .circles div {
+        display: none;
     }
+
+    /* Mobilda yuklamani kamaytirish */
 }
