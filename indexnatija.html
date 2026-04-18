@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mening natijalarim</title>
+    <title>Mening natijalarim | QuizHub</title>
     <link rel="stylesheet" href="./stylenatija.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
-
 <body>
+    <div id="toast-container" class="toast-container"></div>
 
     <header class="header">
-        <div class="container">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="./Text.svg" alt="QuizHub">
+            </div>
+            <nav class="nav-menu">
+                <a href="indexteslar.html" class="nav-link">Bosh sahifa</a>
+                <a href="testlar.html" class="nav-link">Testlar</a>
+                <a href="indexnatija.html" class="nav-link active">Natijalar</a>
+                <a href="REYTING.HTML" class="nav-link">Reyting</a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar-circle"><span>JD</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
             <div class="title-section">
                 <span class="subtitle">STATISTIKA</span>
                 <h1 class="main-title">Mening natijalarim</h1>
@@ -22,13 +37,14 @@
             <div class="filters">
                 <select class="filter-select">
                     <option>Mavzu</option>
+                    <option>Matematika</option>
+                    <option>Fizika</option>
                 </select>
                 <div class="date-picker">
                     Sana <i class="fa-regular fa-calendar"></i>
                 </div>
             </div>
-    </header>
-    <div class="container">
+        </div>
 
         <section class="stats-grid">
             <div class="stat-card">
@@ -45,7 +61,7 @@
             </div>
         </section>
 
-        <section class="results-list">
+        <section class="results-list glass-panel">
             <div class="result-item">
                 <div class="subject-info">
                     <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
@@ -91,7 +107,11 @@
                 </div>
             </div>
         </section>
+
+        <button class="load-more-btn">Ko'proq yuklash</button>
     </div>
+
+    <script src="./scriptnatija.js"></script>
 
 </body>
 
