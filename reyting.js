@@ -1,81 +1,116 @@
-let supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt"
-let supaBaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co"
-const _supabase = supabase.createClient(supaBaseUrl, supabaseKey)
+const supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt";
+const supaBaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co";
+const _supabase = supabase.createClient(supaBaseUrl, supabaseKey);
 
-let orin = document.getElementById('nechinchi')
-let birTitle =document.getElementById('bir-title')
-let ikkiTitle =document.getElementById('ikki-title')
-let uchTitle =document.getElementById('uch-title')
-let birBall= document.getElementById('bir-ball')
-let ikkiBall= document.getElementById('ikki-ball')
-let uchBall= document.getElementById('uch-ball')
-let bir = document.getElementById('bir')
-let ikki = document.getElementById('ikki')
-let uch= document.getElementById('uch')
-let topUchlik = []
+// DOM elementlari
+const ui = {
+    titles: [document.getElementById('bir-title'), document.getElementById('ikki-title'), document.getElementById('uch-title')],
+    balls: [document.getElementById('bir-ball'), document.getElementById('ikki-ball'), document.getElementById('uch-ball')],
+    orinText: document.getElementById('nechinchi'),
+    tbody: document.getElementById('tbody'),
+    filterItems: document.querySelectorAll('.filter-item'),
+    nextLevel: document.getElementById('next-level-text')
+};
 
+// Asosiy ma'lumotlarni olish funksiyasi
+async function yuklash(period = 'haftalik') {
+    ui.tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Yuklanmoqda...</td></tr>";
+    
+    let query = _supabase.from('odamlar').select("*");
 
-async function Olish() {
-    const {data , error } = await _supabase
-    .from('odamlar')
-    .select("*")
-    if(error){
-        alert("Ma'lumotlar kelmadi")
-    }
-    else{
-        let tartibData = data.sort((a,b)=>b.ball-a.ball)
-        console.log(tartibData);
-        topUchlik = data.slice(0,3)
-        console.log(topUchlik);
-        // Ismlar
-        birTitle.innerText = topUchlik[0].ism
-        ikkiTitle.innerText = topUchlik[1].ism
-        uchTitle.innerText = topUchlik[2].ism
-        // ballar
-        birBall.innerText = topUchlik[0].ball 
-        ikkiBall.innerText = topUchlik[1].ball 
-        uchBall.innerText = topUchlik[2].ball 
-                
-        let jadval = document.getElementById('tbody')
-        let html = ""
-        let index = 0
+    // Vaqt bo'yicha filtrlash mantiqi
+    if (period !== 'umumiy') {
+        const bugun = new Date();
+        let boshlanishSanasi = new Date();
 
-        tartibData.forEach(element => {
-            html += `
-                    <tr class="hover:bg-blue-50 transition-colors duration-200">
-                        <td class="px-6 text-center py-4 text-sm text-gray-900 border-r border-gray-200 font-medium">${index+1}</td>
-                        <td class="px-6 text-center py-4 text-sm text-gray-700 border-r border-gray-200">${element.ism}</td>
-                        <td class="px-6 text-center py-4 text-sm text-gray-700 border-r border-gray-200">${element.ball}</td>
-                        <td class="px-6 text-center py-4 text-sm text-gray-700 border-r border-gray-200">${element.testlar}</td>
-                        <td class="px-6 text-center py-4 text-sm font-bold text-green-600 border-r border-gray-200">${element.streak}</td>
-                        <td class="px-6 text-center py-4 text-sm text-gray-700 font-mono"> ${element.uzgarish}</td>
-                    </tr>
-            `
-            index++
-        });
-        jadval.innerHTML = html
-
-        orin.innerText = `Siz ${tartibData.length} o'quvchidan 3-o'rindasiz`
+        if (period === 'haftalik') {
+            boshlanishSanasi.setDate(bugun.getDate() - 7);
+        } else if (period === 'oylik') {
+            boshlanishSanasi.setMonth(bugun.getMonth() - 1);
+        }
         
+        // created_at ustuni orqali filtrlash
+        query = query.gte('created_at', boshlanishSanasi.toISOString());
+    }
+
+    // Ballar bo'yicha kamayish tartibida saralash
+    const { data, error } = await query.order('ball', { ascending: false });
+
+    if (error) {
+        console.error("Xatolik:", error);
+        alert("Ma'lumotlarni olishda xatolik yuz berdi");
+        return;
+    }
+
+    yangilashUI(data);
+}
+
+function yangilashUI(data) {
+    if (!data || data.length === 0) {
+        ui.tbody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>Ma'lumot topilmadi</td></tr>";
+        return;
+    }
+
+    // 1. Top 3 ni yangilash
+    for (let i = 0; i < 3; i++) {
+        if (data[i]) {
+            ui.titles[i].innerText = data[i].ism;
+            ui.balls[i].innerText = `${data[i].ball} ball`;
+        } else {
+            ui.titles[i].innerText = "---";
+            ui.balls[i].innerText = "0 ball";
+        }
+    }
+
+    // 2. Jadvalni to'ldirish
+    let html = "";
+    data.forEach((user, index) => {
+        const isMe = user.ism.includes("Kamol Y."); // O'zingizni aniqlash
+        const highlight = isMe ? "style='background-color: #EEF2FF; font-weight: bold;'" : "";
+
+        html += `
+            <tr ${highlight}>
+                <td style="text-align:center; padding:15px; border-right: 1px solid #e5e7eb;">${index + 1}</td>
+                <td style="padding:15px; border-right: 1px solid #e5e7eb;">${user.ism} ${isMe ? "(Siz)" : ""}</td>
+                <td style="text-align:center; padding:15px; color:#494BD6; font-weight:bold; border-right: 1px solid #e5e7eb;">${user.ball}</td>
+                <td style="text-align:center; padding:15px; border-right: 1px solid #e5e7eb;">${user.testlar || 0}</td>
+                <td style="text-align:center; padding:15px; color:#10B981; font-weight:bold; border-right: 1px solid #e5e7eb;">🔥 ${user.streak || 0}</td>
+                <td style="text-align:center; padding:15px;">${user.uzgarish || '--'}</td>
+            </tr>
+        `;
+    });
+    ui.tbody.innerHTML = html;
+
+    // 3. Foydalanuvchi o'rni
+    const myIndex = data.findIndex(u => u.ism.includes("Kamol Y."));
+    if (myIndex !== -1) {
+        ui.orinText.innerText = `Siz ${data.length} o'quvchidan ${myIndex + 1}-o'rindasiz`;
+        
+        // 4. "Keyingi daraja" mantiqi
+        if (myIndex > 0) {
+            const oldindagiUser = data[myIndex - 1];
+            const farq = oldindagiUser.ball - data[myIndex].ball;
+            ui.nextLevel.innerText = `Siz ${oldindagiUser.ism} bilan farqingizni ${farq} ballga qisqartirishingiz kerak. Olg'a!`;
+        } else {
+            ui.nextLevel.innerText = `Tabriklaymiz! Siz reytingda peshqadamsiz!`;
+        }
+    } else {
+        ui.orinText.innerText = `Siz hali ro'yxatda yo'qsiz.`;
     }
 }
-Olish()
 
-// sort
-// Barcha filter elementlarini tanlab olamiz
-const filterItems = document.querySelectorAll('.filter-item');
+// Filtr tugmalarini boshqarish
+ui.filterItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Klasslarni o'zgartirish
+        document.querySelector('.filter-item.active').classList.remove('active');
+        this.classList.add('active');
 
-filterItems.forEach(item => {
-  item.addEventListener('click', function() {
-    // 1. Avvalgi aktiv elementdan 'active' klassini olib tashlaymiz
-    document.querySelector('.filter-item.active').classList.remove('active');
-    
-    // 2. Bosilgan elementga 'active' klassini qo'shamiz
-    this.classList.add('active');
-
-    // 3. Qaysi biri bosilganiga qarab biror amal bajarish (ixtiyoriy)
-    const tanlandi = this.textContent;
-    console.log(tanlandi + " tanlandi");
-  });
+        // Ma'lumotlarni qayta yuklash
+        const period = this.getAttribute('data-period');
+        yuklash(period);
+    });
 });
 
+// Sahifa yuklanganda birinchi marta chaqirish
+yuklash('haftalik');
