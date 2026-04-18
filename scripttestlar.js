@@ -16,7 +16,6 @@ function xabarnoma(xabar, turi) {
 function Boshlashi() {
   xabarnoma('Testlar tez orada boshlanmoqda','info')
   setTimeout(() => {
-    window.location.href='testlar.html'
+    window.location.href='indexteslar.html'
   }, 2500);
 }
-
