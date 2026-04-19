@@ -14,8 +14,14 @@ let taymer;
 let javobBerildi = false;
 let testBoshlanganVaqt = Date.now(); // Test boshlangan vaqtni muhrlash
 
-const supabaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co";
-const supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt";
+let notugriJavoblar = 0;
+let umumiySarflanganVaqt = 0;
+let savolBoshlanganVaqt;
+
+
+
+let supabaseKey = "sb_publishable_41BrMM_XEn-g0kMQjJZ9jw_L4FpfEGt";
+let supabaseUrl = "https://rfbilwqahnzjmnrmyhng.supabase.co";
 const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 const motiv = document.querySelector('.skip-text');
@@ -43,12 +49,16 @@ function ekrangaChiqar() {
         testTugadi();
         return;
     }
+    savolBoshlanganVaqt = new Date();
+    javobBerildi = false
+    motiv.innerText = "O'ylab javob bering"
+    progressYangila()
 
-    javobBerildi = false;
-    motiv.innerText = "O'ylab javob bering...";
-    motiv.style.color = "#6c757d";
-    progressYangila();
-
+    const savolMatni = document.getElementById('savolMatni');
+    const barchaLi = document.querySelector('#tanlash');
+    let savolNomer = document.getElementById('savolNomer')
+    savolMatni.innerText = savollar[hozirgiIndex].savol;
+    savolNomer.innerText = `${hozirgiIndex + 1} - Savol`
     const joriySavol = savollar[hozirgiIndex];
     document.getElementById('savolMatni').innerText = joriySavol.savol;
     document.getElementById('savolNomer').innerText = `${hozirgiIndex + 1}-savol`;
@@ -67,8 +77,18 @@ function ekrangaChiqar() {
         </li>
     `).join('');
 
-    taymerniBoshlash();
-}
+let keyingi = document.getElementById('keyingi');
+
+keyingi.addEventListener('click', () => {
+    if (!javobBerildi) return; 
+
+    if (hozirgiIndex < savollar.length - 1) {
+        hozirgiIndex++;
+        ekrangaChiqar();
+    } else {
+        natijaniSaqlash(); 
+    }
+});
 
 // --- 4. TAYMER VA PROGRESS ---
 function taymerniBoshlash() {
@@ -98,87 +118,68 @@ window.javobniTekshirish = function(el, tanlanganJavob) {
     javobBerildi = true;
     clearInterval(taymer);
 
-    const togriJavob = savollar[hozirgiIndex].javob;
+let tanlash = document.getElementById('tanlash');
 
-    if (tanlanganJavob === togriJavob) {
-        el.classList.add('yashil');
+tanlash.addEventListener('click', (e) => {
+    let bosilganLi = e.target.closest('li');
+    if (!bosilganLi || javobBerildi) return; 
+
+    javobBerildi = true;
+    clearInterval(taymer); 
+    let savolTugaganVaqt = new Date();
+    let sarflanganSoniya = Math.floor((savolTugaganVaqt - savolBoshlanganVaqt) / 1000);
+    umumiySarflanganVaqt += sarflanganSoniya;
+
+    let ichidagiSpan = bosilganLi.querySelectorAll('span')[1].innerText;
+    
+    if (ichidagiSpan == savollar[hozirgiIndex].javob) {
+        bosilganLi.classList.add('yashil');
         tugriJavoblar++;
-        motiv.innerText = "To'g'ri topdingiz! 🎉";
-        motiv.style.color = "#10b981";
+        motiv.innerText = "Tabriklaymiz";
     } else {
-        el.classList.add('red');
-        motiv.innerText = "Xato javob! ❌";
-        motiv.style.color = "#ef4444";
+        bosilganLi.classList.add('red');
+        notugriJavoblar++; 
+        motiv.innerText = "Afsus, kayfiyatni tushirmang";
         
         // To'g'ri javobni ko'rsatish
-        const barchaLi = document.querySelectorAll('#tanlash li');
-        barchaLi.forEach(li => {
-            if (li.querySelectorAll('span')[1].innerText === togriJavob) {
+        const barchaVariantlar = tanlash.querySelectorAll('li');
+        barchaVariantlar.forEach(li => {
+            let variantMatni = li.querySelectorAll('span')[1].innerText;
+            if (variantMatni == savollar[hozirgiIndex].javob) {
                 li.classList.add('yashil');
             }
         });
     }
-};
-
-// --- 6. NAVIGATSIYA ---
-keyingiBtn.addEventListener('click', () => {
-    if (!javobBerildi) {
-        showToast("Diqqat", "Iltimos, javobni belgilang!", "info", 2000);
-        return;
-    }
-    hozirgiIndex++;
-    ekrangaChiqar();
 });
+function progressYangila() {
+    const bar = document.getElementById('myBar');
+    let foiz = ((hozirgiIndex + 1) / savollar.length) * 100;
+    bar.style.width = foiz + "%";
+}
 
 function avtomatikOtish() {
     hozirgiIndex++;
     ekrangaChiqar();
 }
 
-// --- 7. TESTNI YAKUNLASH VA SUPABASEGA SAQLASH ---
-async function testTugadi() {
-    clearInterval(taymer);
-    
-    // Natijalarni hisoblash
-    const foiz = Math.round((tugriJavoblar / savollar.length) * 100);
-    const notugriJavoblar = savollar.length - tugriJavoblar;
+async function natijaniSaqlash() {
+    document.getElementById('keyingi').disabled = true; 
 
-    // Ketgan vaqtni "MM:SS" formatiga keltirish
-    const testTugaganVaqt = Date.now();
-    const farqSekundda = Math.floor((testTugaganVaqt - testBoshlanganVaqt) / 1000);
-    const minut = Math.floor(farqSekundda / 60);
-    const sekund = farqSekundda % 60;
-    const ketganVaqtText = `${minut.toString().padStart(2, '0')}:${sekund.toString().padStart(2, '0')}`;
+    const { data, error } = await _supabase
+        .from("testnatija") 
+        .insert([
+            {
+                togrijavob: tugriJavoblar, 
+                notogrijavob: notugriJavoblar, 
+                vaqt: umumiySarflanganVaqt 
+            }
+        ]);
 
-    // 3D Toast ko'rsatish
-    showToast(
-        "Test Yakunlandi!", 
-        `To'g'ri: ${tugriJavoblar} | Vaqt: ${ketganVaqtText}`, 
-        "success", 
-        4500
-    );
-
-    // Supabase ma'lumotlar bazasiga yuborish
-    try {
-        const { error } = await _supabase
-            .from("testnatija")
-            .insert([{ 
-                
-              togrijavob  : tugriJavoblar,
-                notogrijavob: notugriJavoblar,
-                vaqt: ketganVaqtText,
-             
-            }]);
-
-        if (error) throw error;
-
-        // Toast va progress bar tugagach yo'naltirish
-        setTimeout(() => {
-            window.location.href = "indexball.html";
-        }, 5000);
-
-    } catch (err) {
-        console.error("Xatolik:", err.message);
+    if (error) {
+        alert("Natijani saqlashda xatolik: " + error.message);
+        document.getElementById('keyingi').disabled = false;
+    } else {
+        alert(`Test tugadi! \nTo'g'ri: ${tugriJavoblar} \nXato: ${notugriJavoblar} \nKetgan vaqt: ${umumiySarflanganVaqt} soniya. \nMa'lumotlar bazaga saqlandi!`);
     }
 }
 
