@@ -1,119 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mening natijalarim</title>
     <link rel="stylesheet" href="./stylenatija.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 
 <body>
-      <header class="header">
+
+    <header class="header">
         <div class="container">
-            <img src="./Text.svg" alt="">
-            <nav>
-                <a class="hammasi-bitta"  href="indexteslar.html">Bosh sahifa</a>
-                <a class="hammasi-bitta" href="./testlar.html">Testlar</a>
-                <a class="hammasi-bitta" href="REYTING.HTML">Reyting</a>
-            </nav>
-            <div class="">
-                <span>JD</span>
+            <div class="title-section">
+                <span class="subtitle">STATISTIKA</span>
+                <h1 class="main-title">Mening natijalarim</h1>
             </div>
-        </div>
+            <div class="filters">
+                <select class="filter-select">
+                    <option>Mavzu</option>
+                </select>
+                <div class="date-picker">
+                    Sana <i class="fa-regular fa-calendar"></i>
+                </div>
+            </div>
     </header>
     <div class="container">
-        <div class="box">
-            <div class="box-head">
-                <h5 class="h5">Statistika</h5>
-                <div class="">
-                    <h1 class="h1f">Mening natijalarim</h1>
-                    <div class="sana">
-                        <button class="Mavzu">Mavzu</button>
-                        <button class="Mavzu"> Sana</button>
-                    </div>
-                </div>
 
-
-
+        <section class="stats-grid">
+            <div class="stat-card">
+                <span class="card-label">O'RTACHA BALL</span>
+                <p class="card-value purple-text">74%</p>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <p class="ball">O'rtacha ball</p>
-                    <h3 class="h3">74%</h3>
-                </div>
-                <div class="card">
-                    <p>Jami testlar</p>
-                    <h3 class="test">24</h3>
-                </div>
-                <div class="card">
-                    <p>Eng yaxshi mavzu</p>
-                    <h3 class="matematika">Matematika</h3>
-                </div>
+            <div class="stat-card">
+                <span class="card-label">JAMI TESTLAR</span>
+                <p class="card-value dark-text">24</p>
             </div>
-        </div>
-        <div class="section">
+            <div class="stat-card">
+                <span class="card-label">ENG YAXSHI MAVZU</span>
+                <p class="card-value green-text">Matematika</p>
+            </div>
+        </section>
 
-            <div>
-                <h3>Testlar</h3>
-
-                <div class="list">
+        <section class="results-list">
+            <div class="result-item">
+                <div class="subject-info">
+                    <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
                     <div>
-                        <img src="./Container (1).svg" alt="">
-                        Matematika (24 savol)
+                        <h3>Matematika</h3>
+                        <span>12 May, 2024</span>
                     </div>
-                    <h4 class="h85">85%</h4>
-                    <h4>17/20 to'g'ri</h4>
-                   <p>Batafsil</p>
-            
                 </div>
-
-                <div class="list">
-                    <div>
-                        <img src="./Icon (19).svg" alt="">
-                        Fizika (18 savol)
-                    </div>
-                    <h4 class="h68">68%</h4>
-                    <h4>17/20 to'g'ri</h4>
-                   <p>Batafsil</p>
+                <div class="score-info">
+                    <span class="percentage green-text">85%</span>
+                    <span class="fraction">17/20 to'g'ri</span>
+                    <a href="#" class="details-link">Batafsil <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-
-                <div class="list">
-                    <div>
-                        <img src="./Icon (20).svg" alt="">
-                        tarix (30 savol)
-                    </div>
-                    <h4 class="h45">45%</h4>
-                    <h4>17/20 to'g'ri</h4>
-                    <p>Batafsil</p>
-                </div>
-
-                <div class="list">
-                    <div>
-                        <img src="./Icon (21).svg" alt="">
-                        Informatika (20 savol)
-                    </div>
-                    <h4 class="h85">92%</h4>
-                    <h4>17/20 to'g'ri</h4>
-                     <p>Batafsil</p>
-                </div>
-                <div class="list">
-                    <div>
-                        <img src="./Icon (22).svg" alt="">
-                        Informatika (20 savol)
-                    </div>
-                    <h4 class="h72">72%</h4>
-                    <h4>17/20 to'g'ri</h4>
-                    <p>Batafsil</p>
-                </div>
-
             </div>
 
+            <div class="result-item">
+                <div class="subject-info">
+                    <div class="icon-box"><i class="fa-solid fa-language"></i></div>
+                    <div>
+                        <h3>Ingliz tili</h3>
+                        <span>10 May, 2024</span>
+                    </div>
+                </div>
+                <div class="score-info">
+                    <span class="percentage orange-text">68%</span>
+                    <span class="fraction">14/20 to'g'ri</span>
+                    <a href="#" class="details-link">Batafsil <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
 
-
-        </div>
+            <div class="result-item">
+                <div class="subject-info">
+                    <div class="icon-box"><i class="fa-solid fa-dna"></i></div>
+                    <div>
+                        <h3>Biologiya</h3>
+                        <span>08 May, 2024</span>
+                    </div>
+                </div>
+                <div class="score-info">
+                    <span class="percentage red-text">45%</span>
+                    <span class="fraction">9/20 to'g'ri</span>
+                    <a href="#" class="details-link">Batafsil <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
     </div>
-    <script src="./natija.js"></script>
+
 </body>
 
 </html>

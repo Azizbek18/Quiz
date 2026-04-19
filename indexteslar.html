@@ -4,118 +4,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>QuizHub - Dashboard</title>
     <link rel="stylesheet" href="./styletestlar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <header class="header">
         <div class="container">
-            <img src="./Text.svg" alt="">
+            <div class="logo">
+                <img src="./Text.svg" alt="QuizHub Logo">
+            </div>
             <nav>
-                <a class="hammasi-bitta"  href="indexteslar.html">Bosh sahifa</a>
+                <a class="hammasi-bitta active" href="indexteslar.html">Bosh sahifa</a>
                 <a class="hammasi-bitta" href="./testlar.html">Testlar</a>
-                <a class="hammasi-bitta" href="indexnatija.html">Natija</a>
+                <a class="hammasi-bitta" href="indexnatija.html">Natijalar</a>
                 <a class="hammasi-bitta" href="REYTING.HTML">Reyting</a>
             </nav>
-            <div class="">
-                <span>JD</span>
+            <div class="user-avatar">
+                <span id="user-initials">JD</span>
             </div>
         </div>
     </header>
-    <div class="container">
-        <h2 id="kamol">Salom, Kamol 👋</h2>
-        <p>Bugun qaysi mavzuni sinab ko‘rasiz?</p>
 
+    <main class="container">
+        <div class="welcome-section">
+            <h2 id="kamol">Salom, Kamol 👋</h2>
+            <p>Bugun qaysi mavzuni sinab ko‘rasiz?</p>
+        </div>
 
         <div class="cards">
-            <div class="card">
+            <div class="card card-3d">
                 <h3>24</h3>
                 <p>Ishlangan testlar</p>
             </div>
-            <div class="card">
+            <div class="card card-3d">
                 <h3>78%</h3>
                 <p>O‘rtacha ball</p>
             </div>
-            <div class="card">
+            <div class="card card-3d">
                 <h3>5</h3>
                 <p>Ketma-ket kun</p>
             </div>
-            <div class="card">
+            <div class="card card-3d">
                 <h3>3</h3>
                 <p>Reyting o‘rni</p>
             </div>
         </div>
 
         <div class="section">
-
-            <div>
+            
+            <div class="tests-list">
                 <h3>Testlar</h3>
 
-                <div class="list">
-                    <div>
-                        <img src="./Icon (15).svg" alt="">
-                        Matematika (24 savol)
-
+                <div class="list glass-item">
+                    <div class="test-info">
+                        <div class="icon-box math"><i class="fas fa-book"></i></div>
+                        <div>
+                            <strong>Matematika</strong>
+                            <span>24 savol</span>
+                        </div>
                     </div>
-
                     <button onclick="Boshlashi()" class="btn">Boshlash</button>
                 </div>
 
-                <div class="list">
-                    <div>
-                        <img src="./Icon (16).svg" alt="">
-                        Fizika (18 savol)
+                <div class="list glass-item">
+                    <div class="test-info">
+                        <div class="icon-box physics"><i class="fas fa-flask"></i></div>
+                        <div>
+                            <strong>Fizika</strong>
+                            <span>18 savol</span>
+                        </div>
                     </div>
-                    <button  class="btn">Boshlash</button>
+                    <button onclick="Boshlashi()" class="btn">Boshlash</button>
                 </div>
 
-                <div class="list">
-                    <div>
-                        <img src="./Icon (17).svg" alt="">
-                        tarix (30 savol)
+                <div class="list glass-item">
+                    <div class="test-info">
+                        <div class="icon-box history"><i class="fas fa-globe"></i></div>
+                        <div>
+                            <strong>Tarix</strong>
+                            <span>30 savol</span>
+                        </div>
                     </div>
-                    <button class="btn">Boshlash</button>
+                    <button onclick="Boshlashi()" class="btn">Boshlash</button>
                 </div>
 
-                <div class="list">
-                    <div>
-                        <img src="./Icon (18).svg" alt="">
-                        Informatika (20 savol)
+                <div class="list glass-item">
+                    <div class="test-info">
+                        <div class="icon-box info-tech"><i class="fas fa-code"></i></div>
+                        <div>
+                            <strong>Informatika</strong>
+                            <span>20 savol</span>
+                        </div>
                     </div>
-                    <button class="btn">Boshlash</button>
+                    <button onclick="Boshlashi()" class="btn">Boshlash</button>
                 </div>
-
             </div>
 
-            <div class="results">
+            <div class="results glass-panel">
                 <h3>So‘nggi natijalar</h3>
 
                 <div class="result-item">
-                    <span>Matematika</span>
-                    <span>85% <span class="badge green">Yaxshi</span></span>
+                    <div class="res-text">
+                        <strong>Matematika</strong>
+                        <small>KECHA</small>
+                    </div>
+                    <div class="res-score">
+                        <span class="score-num">85%</span>
+                        <span class="badge green">YAXSHI</span>
+                    </div>
                 </div>
 
                 <div class="result-item">
-                    <span>Fizika</span>
-                    <span>62% <span class="badge orange">O‘rta</span></span>
+                    <div class="res-text">
+                        <strong>Fizika</strong>
+                        <small>2 KUN OLDIN</small>
+                    </div>
+                    <div class="res-score">
+                        <span class="score-num">62%</span>
+                        <span class="badge orange">O‘RTA</span>
+                    </div>
                 </div>
 
                 <div class="result-item">
-                    <span>Tarix</span>
-                    <span>90% <span class="badge green">A'lo</span></span>
+                    <div class="res-text">
+                        <strong>Tarix</strong>
+                        <small>3 KUN OLDIN</small>
+                    </div>
+                    <div class="res-score">
+                        <span class="score-num">90%</span>
+                        <span class="badge green">A'LO</span>
+                    </div>
                 </div>
 
                 <div class="note">
-                    Siz o‘tgan haftaga qaraganda 15% ko‘proq test ishladingiz. Olg‘a!
+                    <i class="fas fa-chart-line"></i>
+                    <p>Siz o‘tgan haftaga qaraganda 15% ko‘proq test ishladingiz. Olg‘a!</p>
                 </div>
-
             </div>
 
         </div>
+
         <div class="xabar-con"></div>
-    </div>
+    </main>
+
+    <script src="./scripttestlar.js"></script>
 </body>
-<script src="./scripttestlar.js"></script>
 
 </html>

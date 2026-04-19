@@ -1,173 +1,292 @@
-
-/* Umumiy sozlamalar */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fon gradienti (Siz yozgan Tailwind klassining aniq ko'rinishi) */
-.login-body {
-    height: 100vh;
+body {
+    background-color: #0f172a;
+    /* To'q rangli futuristik fon */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F8F9FA;
-    background-image: 
-        radial-gradient(128.06% 160.08% at 0% 100%, #F1F4F6 0%, rgba(241, 244, 246, 0) 40%),
-        radial-gradient(128.06% 160.08% at 100% 0%, #E1E0FF 0%, rgba(225, 224, 255, 0) 40%);
+    min-height: 100vh;
+    overflow: hidden;
 }
 
-.login-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Orqa fondagi 3D sferalar */
+.circles div {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: -1;
+    animation: move 8s infinite alternate ease-in-out;
 }
 
-/* Login kartasi */
-.login-card {
-    background-color: #ffffff;
-    width: 400px;
+.circle1 {
+    width: 300px;
+    height: 300px;
+    background: #494BD6;
+    top: -50px;
+    left: -50px;
+}
+
+.circle2 {
+    width: 250px;
+    height: 250px;
+    background: #a855f7;
+    bottom: -50px;
+    right: -50px;
+    opacity: 0.6;
+}
+
+.circle3 {
+    width: 200px;
+    height: 200px;
+    background: #06b6d4;
+    top: 40%;
+    left: 30%;
+    opacity: 0.3;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(50px) scale(1.1);
+    }
+}
+
+/* Glassmorphism Box */
+.box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    width: 450px;
     padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
-}
-
-.card-header {
-    margin-bottom: 25px;
-}
-
-.card-header h1 {
-    font-weight: bold;
-    font-size: 24px;
-    color: #1a1a1a;
-}
-
-.card-header p {
-    color: #6c757d;
-    font-size: 14px;
-}
-
-/* Inputlar guruhi */
-.form-group {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #4a5568;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.form-group input:focus {
-    border-color: #494BD6;
-}
-
-/* Kirish tugmasi */
-.login-btn {
-    width: 100%;
-    background-color: #494BD6;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     color: white;
-    padding: 12px;
-    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icon-header {
+    font-size: 40px;
+    color: #494BD6;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px #494BD6);
+}
+
+.yozuv h1 {
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.yozuv p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Inputs */
+.inp1 {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 12px 0;
+    padding: 0 15px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.inp1 i {
+    color: #64748b;
+    margin-right: 12px;
+    width: 20px;
+}
+
+.inp1 input {
+    background: transparent;
     border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+}
+
+.inp1:focus-within {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #494BD6;
+    box-shadow: 0 0 15px rgba(73, 75, 214, 0.3);
+}
+
+/* Button */
+.btn1 {
+    background: linear-gradient(135deg, #494BD6, #9333ea);
+    width: 100%;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
     font-size: 16px;
     font-weight: 600;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.login-btn:hover {
-    background-color: #3a3bb1;
-}
-
-.login-btn:active {
-    transform: scale(0.98);
-}
-
-/* Footer qismi */
-.card-footer {
     margin-top: 20px;
-    text-align: center;
-    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
 }
 
-.card-footer a {
-    color: #494BD6;
-    text-decoration: none;
-    font-weight: 600;
+.btn1:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(73, 75, 214, 0.4);
 }
 
-.card-footer a:hover {
-    text-decoration: underline;
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #cbd5e1;
 }
-.xabar-con{
+
+.xabar-con {
     position: fixed;
-    top: 30px;
-    right: 30px;
+    top: 25px;
+    right: 25px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.xabar{
-    width: 400px;
-    padding: 15px 20px;
+/* 3D Glass Toast */
+.xabar {
+    position: relative;
+    width: 340px;
+    padding: 18px 22px;
     color: white;
-    border-radius: 10px;
-    margin: 10px 0px;
-
-    animation: kirish 1s ease, chiqish 1s ease 2s forwards;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+    animation: toastKirish 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
+/* Toast turlari */
+.success {
+    border-left: 5px solid #22c55e;
+}
 
+.error {
+    border-left: 5px solid #ef4444;
+}
 
-.error{
-    background-color: red;
+.info {
+    border-left: 5px solid #3b82f6;
 }
-.success{
-    background-color: rgb(0, 209, 0);
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
 }
-.info{
-    background-color: skyblue;
+
+.progress-line {
+    height: 100%;
+    width: 100%;
+    background: currentColor;
+    /* Xabar turiga qarab rang oladi */
+    animation: progressAnim 4s linear forwards;
 }
-@keyframes kirish{
-    from{
-        transform: translateX(100%);
+
+.success .progress-line {
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+}
+
+.error .progress-line {
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+}
+
+.info .progress-line {
+    background: #3b82f6;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+/* Animatsiyalar */
+@keyframes toastKirish {
+    from {
+        transform: translateX(120%);
         opacity: 0;
     }
-    to{
-        transform: translateX(0%);
+
+    to {
+        transform: translateX(0);
         opacity: 1;
     }
 }
 
-@keyframes chiqish{
-    from{
-        transform: translateX(0%);
+@keyframes toastChiqish {
+    from {
+        transform: translateX(0);
         opacity: 1;
     }
-    to{
+
+    to {
         transform: translateX(120%);
         opacity: 0;
     }
 }
 
+@keyframes progressAnim {
+    from {
+        width: 100%;
+    }
 
-@media (max-width:768px){
-    .login-container{
+    to {
+        width: 0%;
+    }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 480px) {
+    .box {
+        width: 92%;
         padding: 20px;
     }
+
+    .circles div {
+        display: none;
+    }
+
+    /* Mobilda yuklamani kamaytirish */
 }

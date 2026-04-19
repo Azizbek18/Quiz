@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reyting - Leaderboard</title>
+    <title>Reyting - QuizHub</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="reyting.css">
 </head>
 <body>
-      <header class="header">
+    <header class="header">
         <div class="container">
-            <img src="./Text.svg" alt="">
+            <img src="./Text.svg" alt="Logo">
             <nav>
-                <a class="hammasi-bitta"  href="indexteslar.html">Bosh sahifa</a>
+                <a class="hammasi-bitta" href="indexteslar.html">Bosh sahifa</a>
                 <a class="hammasi-bitta" href="./testlar.html">Testlar</a>
                 <a class="hammasi-bitta" href="indexnatija.html">Natija</a>
-                
             </nav>
-            <div class="">
+            <div class="user-profile">
                 <span>JD</span>
             </div>
         </div>
@@ -30,25 +29,26 @@
         </header>
 
         <nav class="filter-nav">
-            <p class="filter-item active">Haftalik</p>
-            <p class="filter-item">Oylik</p>
-            <p class="filter-item">Umumiy</p>
+            <p class="filter-item active" data-period="haftalik">Haftalik</p>
+            <p class="filter-item" data-period="oylik">Oylik</p>
+            <p class="filter-item" data-period="umumiy">Umumiy</p>
         </nav>
 
         <section class="podium">
             <div class="podium-item">
                 <img src="./Nilufar X..svg" alt="User" class="avatar">
-                <h4 id="ikki-title">Nilufar X.</h4>
-                <p id="ikki-ball" class="points">875 ball</p>
+                <h4 id="ikki-title">...</h4>
+                <p id="ikki-ball" class="points">0 ball</p>
                 <div class="bar rank-2">
                     <h1 id="ikki">2</h1>
                 </div>
             </div>
 
-            <div class="podium-item">
+            <div class="podium-item main-rank">
+                <div class="crown">👑</div>
                 <img src="./Sardor M..svg" alt="User" class="avatar">
-                <h4 id="bir-title">Sardor M.</h4>
-                <p id="bir-ball" class="points">920 ball</p>
+                <h4 id="bir-title">...</h4>
+                <p id="bir-ball" class="points">0 ball</p>
                 <div class="bar rank-1">
                     <h1 id="bir">1</h1>
                 </div>
@@ -56,8 +56,8 @@
 
             <div class="podium-item">
                 <img src="./Background+Border+Shadow.svg" alt="User" class="avatar">
-                <h4 id="uch-title">Kamol Y. (Siz)</h4>
-                <p id="uch-ball" class="points">842 ball</p>
+                <h4 id="uch-title">...</h4>
+                <p id="uch-ball" class="points">0 ball</p>
                 <div class="bar rank-3">
                     <h1 id="uch">3</h1>
                 </div>
@@ -80,7 +80,7 @@
                     </tbody>
                 <tfoot>
                     <tr>
-                        <td id="nechinchi" colspan="6">Siz 78 o'quvchidan 3-o'rindasiz</td>
+                        <td id="nechinchi" colspan="6">Yuklanmoqda...</td>
                     </tr>
                 </tfoot>
             </table>
@@ -91,7 +91,7 @@
                 <img src="./Container.svg" alt="Icon">
                 <div class="ach-text">
                     <h3>Keyingi daraja</h3>
-                    <p>Siz Nilufar X. bilan farqingizni 33 ballga qisqartirdingiz. Yana 2 ta mukammal test va siz 2-o'rindasiz!</p>
+                    <p id="next-level-text">Ma'lumotlar tahlil qilinmoqda...</p>
                 </div>
             </div>
             <div class="achievement-card">

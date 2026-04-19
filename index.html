@@ -1,46 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <title>QuizMaster - Kirish</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 </head>
-
 <body>
+    <div class="circles">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+    </div>
+
+    <div class="xabar-con"></div>
+
     <div class="box">
         <div class="yozuv">
-            <h1>Royhatan Otish</h1>
-            <p>Bepul hisob yaratish</p>
+            <div class="icon-header"><i class="fas fa-user-lock"></i></div>
+            <h1>Kirish</h1>
+            <p>Hisobingizga kiring</p>
         </div>
 
-        <div class="inp1">      
-            <img src="./Icon (23).svg" alt="">
-            <input id="ism" class="inp1"    type="" placeholder="ism">
+        <div class="input-container">
+            <div class="inp-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input id="email" type="email" placeholder="Email@example.com">
+            </div>
+            <div class="inp-wrapper">
+                <i class="fas fa-key"></i>
+                <input id="parol" type="password" placeholder="Parolingiz">
+            </div>
         </div>
-        <div class="inp1">
-            <img src="./Icon (24).svg" alt="">
-            <input id="email" class="inp1" type="text" placeholder="email">
+
+        <button onclick="Tekshirish()" class="btn-main">
+            <span>Tizimga kirish</span>
+            <i class="fas fa-sign-in-alt"></i>
+        </button>
+
+        <div class="footer-text">
+            Hisobingiz yo'qmi? <a href="index.html">Ro'yxatdan o'ting</a>
         </div>
-        <div class="inp1">
-            <img src="./Icon (25).svg" alt="">
-            <input id="parol" class="inp1" type="password" placeholder="parol">
-        </div>
-        <div class="inp1">
-            <img src="/Icon (26).svg" alt="">
-            <input class="inp" type="" placeholder="parol tastiqlang">
-        </div>
-        <div class="checkbox">
-            <input type="checkbox">
-            <span>Foydalanish shartlariga roziman</span>
-        </div>
-        <button onclick="yaratish()" class="btn1">Hisob yratish</button>
     </div>
-    <div class="xabar-con"></div>
-    <script src="./script.js"></script>
-</body> 
 
+    <script src="script.js"></script>
+</body>
 </html>
